@@ -4,17 +4,17 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
 const inputStyles = {
-  margin: "10px",
-  width: "500px"
+  margin: "20px"
 };
 
 const cardStyles = {
-  width: "1364px",
-  height: "80px",
-  margin: "30px",
+  width: "100%",
+  height: "200px",
+  margin: "auto",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "space-around",
-  alignItems: "flex-end"
+  alignItems: "flex-start"
 };
 
 
@@ -25,9 +25,9 @@ class TrackerForm extends React.Component {
 
   render(){
     return (
-      <Card style={cardStyles}>
-
-        <TextField style={{margin: "10px"}}
+      <Card style={cardStyles}
+            class="trackerform">
+        <TextField style={{margin: "20px"}}
                     hintText="React.js"
                     floatingLabelText="Name"/>
         <TextField style={inputStyles}

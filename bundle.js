@@ -21085,9 +21085,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _navbar = __webpack_require__(108);
+var _sidebar = __webpack_require__(274);
 
-var _navbar2 = _interopRequireDefault(_navbar);
+var _sidebar2 = _interopRequireDefault(_sidebar);
 
 var _MuiThemeProvider = __webpack_require__(88);
 
@@ -21096,6 +21096,10 @@ var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 var _trackerIndex = __webpack_require__(250);
 
 var _trackerIndex2 = _interopRequireDefault(_trackerIndex);
+
+var _navbar = __webpack_require__(108);
+
+var _navbar2 = _interopRequireDefault(_navbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21124,7 +21128,7 @@ var App = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(_navbar2.default, null),
-          _react2.default.createElement(_trackerIndex2.default, null)
+          _react2.default.createElement(_sidebar2.default, null)
         )
       );
     }
@@ -21200,7 +21204,7 @@ var NavBar = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(_AppBar2.default, {
-            title: 'Dif-Tos',
+            title: 'Dif ToS',
             iconClassNameRight: 'muidocs-icon-navigation-expand-more',
             onLeftIconButtonClick: this.toggleMenu,
             style: styles
@@ -21209,7 +21213,7 @@ var NavBar = function (_React$Component) {
         );
       } else {
         return _react2.default.createElement(_AppBar2.default, {
-          title: 'Dif-Tos',
+          title: 'Dif ToS',
           iconClassNameRight: 'muidocs-icon-navigation-expand-more',
           onLeftIconButtonClick: this.toggleMenu,
           style: styles
@@ -30762,9 +30766,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var style = {
   display: 'inline-block',
   margin: '16px 32px 16px 0',
-  backgroundColor: "#ffcc80",
+  backgroundColor: "rgba(255, 204, 128, 1)",
   color: "white",
-  marginTop: "0px"
+  marginTop: "0px",
+  position: 'absolute',
+  zIndex: "4"
 };
 
 var DropDown = function DropDown() {
@@ -35007,7 +35013,7 @@ var _FlatButton2 = _interopRequireDefault(_FlatButton);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  margin: "30px"
+  margin: "5px"
 };
 
 var TrackerIndexItem = function TrackerIndexItem() {
@@ -37104,17 +37110,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var inputStyles = {
-  margin: "10px",
-  width: "500px"
+  margin: "20px"
 };
 
 var cardStyles = {
-  width: "1364px",
-  height: "80px",
-  margin: "30px",
+  width: "100%",
+  height: "200px",
+  margin: "auto",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "space-around",
-  alignItems: "flex-end"
+  alignItems: "flex-start"
 };
 
 var TrackerForm = function (_React$Component) {
@@ -37131,8 +37137,9 @@ var TrackerForm = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _Card.Card,
-        { style: cardStyles },
-        _react2.default.createElement(_TextField2.default, { style: { margin: "10px" },
+        { style: cardStyles,
+          'class': 'trackerform' },
+        _react2.default.createElement(_TextField2.default, { style: { margin: "20px" },
           hintText: 'React.js',
           floatingLabelText: 'Name' }),
         _react2.default.createElement(_TextField2.default, { style: inputStyles,
@@ -38386,6 +38393,60 @@ TextFieldUnderline.defaultProps = defaultProps;
 
 exports.default = TextFieldUnderline;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _trackerIndex = __webpack_require__(250);
+
+var _trackerIndex2 = _interopRequireDefault(_trackerIndex);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SideBar = function (_React$Component) {
+  _inherits(SideBar, _React$Component);
+
+  function SideBar(props) {
+    _classCallCheck(this, SideBar);
+
+    return _possibleConstructorReturn(this, (SideBar.__proto__ || Object.getPrototypeOf(SideBar)).call(this, props));
+  }
+
+  _createClass(SideBar, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { 'class': 'sidebar' },
+        _react2.default.createElement(_trackerIndex2.default, null)
+      );
+    }
+  }]);
+
+  return SideBar;
+}(_react2.default.Component);
+
+exports.default = SideBar;
 
 /***/ })
 /******/ ]);

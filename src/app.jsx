@@ -1,7 +1,8 @@
 import React from 'react';
-import NavBar from './components/navbar';
+import SideBar from './components/sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TrackerIndex from './components/trackerIndex';
+import NavBar from './components/navbar';
 
 class App extends React.Component {
   constructor(props){
@@ -13,7 +14,7 @@ class App extends React.Component {
       <MuiThemeProvider>
         <div>
           <NavBar />
-          <TrackerIndex />
+          <SideBar />
         </div>
       </MuiThemeProvider>
     );

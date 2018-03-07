@@ -3,7 +3,7 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
-  margin: "30px"
+  margin: "5px"
 };
 
 

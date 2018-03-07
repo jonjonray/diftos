@@ -24,7 +24,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <AppBar
-          title="Dif-Tos"
+          title="Dif ToS"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonClick={this.toggleMenu}
           style={styles}
@@ -36,7 +36,7 @@ class NavBar extends React.Component {
     } else {
     return (
         <AppBar
-          title="Dif-Tos"
+          title="Dif ToS"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonClick={this.toggleMenu}
           style={styles}
