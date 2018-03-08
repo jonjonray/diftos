@@ -3,6 +3,10 @@ import SideBar from './components/sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TrackerIndex from './components/trackerIndex';
 import NavBar from './components/navbar';
+import Auth from './components/auth';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 
 class App extends React.Component {
   constructor(props){
@@ -12,10 +16,13 @@ class App extends React.Component {
   render(){
     return (
       <MuiThemeProvider>
-        <div>
-          <NavBar />
-          <SideBar />
-        </div>
+        <Router>
+          <div>
+            <Route exact path='/' component={NavBar} />
+            <Route exact path='/' component={SideBar} />
+            <Route path='/auth' component={Auth} />
+          </div>
+        </Router>
       </MuiThemeProvider>
     );
   }
