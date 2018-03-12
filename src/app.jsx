@@ -5,7 +5,7 @@ import TrackerIndex from './components/trackerIndex';
 import NavBar from './components/navbar';
 import Auth from './components/auth';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 
 class App extends React.Component {

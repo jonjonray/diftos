@@ -21131,7 +21131,7 @@ var App = function (_React$Component) {
         _MuiThemeProvider2.default,
         null,
         _react2.default.createElement(
-          _reactRouterDom.BrowserRouter,
+          _reactRouterDom.HashRouter,
           null,
           _react2.default.createElement(
             'div',
@@ -21206,6 +21206,13 @@ var NavBar = function (_React$Component) {
     key: 'toggleMenu',
     value: function toggleMenu() {
       this.setState({ menuDisplay: this.state.menuDisplay ? false : true });
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (localStorage.getItem("jwtToken") === null) {
+        this.props.history.push('/auth');
+      }
     }
   }, {
     key: 'render',
@@ -30784,6 +30791,11 @@ var style = {
   zIndex: "4"
 };
 
+var logout = function logout() {
+  localStorage.removeItem('jwtToken');
+  window.location.reload();
+};
+
 var DropDown = function DropDown() {
   return _react2.default.createElement(
     'div',
@@ -30795,7 +30807,8 @@ var DropDown = function DropDown() {
         _Menu2.default,
         null,
         _react2.default.createElement(_MenuItem2.default, { primaryText: 'Account Settings', style: { color: "white" } }),
-        _react2.default.createElement(_MenuItem2.default, { primaryText: 'Sign out', style: { color: "white" } })
+        _react2.default.createElement(_MenuItem2.default, { primaryText: 'Sign out', style: { color: "white" },
+          onClick: logout })
       )
     )
   );
@@ -37149,7 +37162,7 @@ var TrackerForm = function (_React$Component) {
       return _react2.default.createElement(
         _Card.Card,
         { style: cardStyles,
-          'class': 'trackerform' },
+          className: 'trackerform' },
         _react2.default.createElement(_TextField2.default, { style: { margin: "20px" },
           hintText: 'React.js',
           floatingLabelText: 'Name' }),
@@ -38448,7 +38461,7 @@ var SideBar = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { 'class': 'sidebar' },
+        { className: 'sidebar' },
         _react2.default.createElement(_trackerIndex2.default, null)
       );
     }
@@ -42839,6 +42852,14 @@ var _axios2 = _interopRequireDefault(_axios);
 
 var _reactRouterDom = __webpack_require__(292);
 
+var _TextField = __webpack_require__(268);
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _FlatButton = __webpack_require__(264);
+
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42860,6 +42881,10 @@ var Auth = function (_Component) {
       password: '',
       message: ''
     };
+
+    _this.onChange = _this.onChange.bind(_this);
+    _this.onSubmit = _this.onSubmit.bind(_this);
+
     return _this;
   }
 
@@ -42872,29 +42897,37 @@ var Auth = function (_Component) {
     }
   }, {
     key: 'onSubmit',
-    value: function onSubmit(e) {
+    value: function onSubmit(e, type) {
       var _this2 = this;
 
       e.preventDefault();
-
       var _state = this.state,
           username = _state.username,
           password = _state.password;
 
 
-      _axios2.default.post('/api/auth/login', { username: username, password: password }).then(function (result) {
-        localStorage.setItem('jwtToken', result.data.token);
-        _this2.setState({ message: '' });
-        _this2.props.history.push('/');
-      }).catch(function (error) {
-        if (error.response.status === 401) {
-          _this2.setState({ message: 'Login failed. Username or password not match' });
-        }
-      });
+      if (type === "login") {
+        _axios2.default.post('/api/auth/login', { username: username, password: password }).then(function (result) {
+          localStorage.setItem('jwtToken', result.data.token);
+          _this2.setState({ message: '' });
+          _this2.props.history.push('/');
+        }).catch(function (error) {
+          if (error.response.status === 401) {
+            _this2.setState({ message: 'Login failed. Username or password not match' });
+          }
+        });
+      } else {
+
+        _axios2.default.post('/api/auth/register', { username: username, password: password }).then(function (result) {
+          _this2.props.history.push("/");
+        });
+      }
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var _state2 = this.state,
           username = _state2.username,
           password = _state2.password,
@@ -42902,47 +42935,50 @@ var Auth = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { 'class': 'container' },
+        { className: 'form-container' },
         _react2.default.createElement(
           'form',
-          { 'class': 'form-signin', onSubmit: this.onSubmit },
+          { className: 'form-signin' },
           message !== '' && _react2.default.createElement(
             'div',
-            { 'class': 'alert alert-warning alert-dismissible', role: 'alert' },
+            { role: 'alert' },
             message
           ),
           _react2.default.createElement(
             'h2',
-            { 'class': 'form-signin-heading' },
+            { className: 'form-heading' },
             'Please sign in'
           ),
+          _react2.default.createElement(_TextField2.default, { style: { margin: "20px" },
+            value: username,
+            type: 'email',
+            name: 'username',
+            floatingLabelText: 'Email',
+            onChange: this.onChange,
+            required: true }),
+          _react2.default.createElement(_TextField2.default, { type: 'password',
+            floatingLabelText: 'Password',
+            style: { margin: "20px" },
+            name: 'password',
+            value: password,
+            onChange: this.onChange, required: true }),
           _react2.default.createElement(
-            'label',
-            { 'for': 'inputEmail', 'class': 'sr-only' },
-            'Email address'
-          ),
-          _react2.default.createElement('input', { type: 'email', 'class': 'form-control', placeholder: 'Email address', name: 'username', value: username, onChange: this.onChange, required: true }),
-          _react2.default.createElement(
-            'label',
-            { 'for': 'inputPassword', 'class': 'sr-only' },
-            'Password'
-          ),
-          _react2.default.createElement('input', { type: 'password', 'class': 'form-control', placeholder: 'Password', name: 'password', value: password, onChange: this.onChange, required: true }),
-          _react2.default.createElement(
-            'button',
-            { 'class': 'btn btn-lg btn-primary btn-block', type: 'submit' },
+            _FlatButton2.default,
+            { type: 'submit',
+              backgroundColor: '#ffcc80',
+              onClick: function onClick(e) {
+                return _this3.onSubmit(e, "login");
+              } },
             'Login'
           ),
+          _react2.default.createElement('br', null),
           _react2.default.createElement(
-            'p',
-            null,
-            'Not a member? ',
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/register' },
-              _react2.default.createElement('span', { 'class': 'glyphicon glyphicon-plus-sign', 'aria-hidden': 'true' }),
-              ' Register here'
-            )
+            _FlatButton2.default,
+            { type: 'submit',
+              onClick: function onClick(e) {
+                return _this3.onSubmit(e, "signup");
+              } },
+            'Sign Up'
           )
         )
       );

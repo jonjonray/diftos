@@ -8,7 +8,7 @@ class SideBar extends React.Component {
 
   render(){
     return (
-        <div class="sidebar">
+        <div className="sidebar">
           <TrackerIndex />
         </div>
     );

@@ -19,6 +19,13 @@ class NavBar extends React.Component {
     this.setState({menuDisplay: this.state.menuDisplay ? false : true});
   }
 
+
+  componentWillMount(){
+    if (localStorage.getItem("jwtToken") === null) {
+      this.props.history.push('/auth');
+    }
+  }
+
   render(){
     if (this.state.menuDisplay) {
     return (

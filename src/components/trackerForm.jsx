@@ -26,7 +26,7 @@ class TrackerForm extends React.Component {
   render(){
     return (
       <Card style={cardStyles}
-            class="trackerform">
+            className="trackerform">
         <TextField style={{margin: "20px"}}
                     hintText="React.js"
                     floatingLabelText="Name"/>

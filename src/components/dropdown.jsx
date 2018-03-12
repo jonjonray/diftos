@@ -13,12 +13,18 @@ const style = {
   zIndex: "4"
 };
 
+const logout = () => {
+  localStorage.removeItem('jwtToken');
+  window.location.reload();
+};
+
 const DropDown = () => (
   <div>
     <Paper style={style}>
       <Menu>
         <MenuItem primaryText="Account Settings" style={{color: "white"}}/>
-        <MenuItem primaryText="Sign out" style={{color: "white"}}/>
+        <MenuItem primaryText="Sign out" style={{color: "white"}}
+                  onClick={logout}/>
       </Menu>
     </Paper>
   </div>
