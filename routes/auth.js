@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var passport = require('passport');
+// var passport = require('passport');
 var settings = require('../config/settings');
-require('../config/passport')(passport);
+// require('../config/passport')(passport);
 var express = require('express');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
@@ -17,11 +17,12 @@ router.post('/register', function(req, res) {
       password: req.body.password
     });
     // save the user
-    newUser.save(function(err) {
+    newUser.save(function(err, user) {
       if (err) {
         return res.json({success: false, msg: 'Username already exists.'});
       }
-      res.json({success: true, msg: 'Successful created new user.'});
+      var token = jwt.sign(user.toJSON(), settings.secret);
+      res.json({success: true, msg: 'Successful created new user.', token: 'JWT ' + token, id: user._id});
     });
   }
 });
@@ -42,7 +43,7 @@ router.post('/login', function(req, res) {
           // if user is found and password is right create a token
           var token = jwt.sign(user.toJSON(), settings.secret);
           // return the information including token as JSON
-          res.json({success: true, token: 'JWT ' + token});
+          res.json({success: true, token: 'JWT ' + token, id: user._id});
         } else {
           res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
         }

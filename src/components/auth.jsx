@@ -33,6 +33,7 @@ class Auth extends Component {
       axios.post('/api/auth/login', { username, password })
         .then((result) => {
           localStorage.setItem('jwtToken', result.data.token);
+          localStorage.setItem('userId', result.data.id);
           this.setState({ message: '' });
           this.props.history.push('/');
         })
@@ -42,14 +43,18 @@ class Auth extends Component {
           }
         });
     } else {
-      
+
       axios.post('/api/auth/register', { username, password })
            .then((result) => {
+             localStorage.setItem('jwtToken', result.data.token);
+             localStorage.setItem('userId', result.data.id);
+             this.setState({ message: '' });
              this.props.history.push("/");
            });
     }
 
   }
+
 
   render() {
     const { username, password, message } = this.state;

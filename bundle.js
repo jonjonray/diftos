@@ -42909,6 +42909,7 @@ var Auth = function (_Component) {
       if (type === "login") {
         _axios2.default.post('/api/auth/login', { username: username, password: password }).then(function (result) {
           localStorage.setItem('jwtToken', result.data.token);
+          localStorage.setItem('userId', result.data.id);
           _this2.setState({ message: '' });
           _this2.props.history.push('/');
         }).catch(function (error) {
@@ -42919,6 +42920,9 @@ var Auth = function (_Component) {
       } else {
 
         _axios2.default.post('/api/auth/register', { username: username, password: password }).then(function (result) {
+          localStorage.setItem('jwtToken', result.data.token);
+          localStorage.setItem('userId', result.data.id);
+          _this2.setState({ message: '' });
           _this2.props.history.push("/");
         });
       }
