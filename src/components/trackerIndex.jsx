@@ -5,9 +5,14 @@ import TrackerForm from "./trackerForm";
 class TrackerIndex extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      
+    };
   }
 
+  componentWillMount(){
 
+  }
   render(){
     return (
       <div>

@@ -5,14 +5,15 @@ var Site = require("../models/site");
 
 
 router.post('/sites', function(req, res) {
-  if (!req.body.title || !req.body.url) {
+  if (!req.body.title || !req.body.url || !req.body.userId) {
     res.json({success: false, msg: 'Please pass title and url.'});
   } else {
     var newSite = new Site({
       title: req.body.title,
-      url: req.body.url
+      url: req.body.url,
+      userId: req.body.userId
     });
-    // save the user
+    
     newSite.save(function(err) {
       if (err) {
         return res.json({success: false, msg: 'Invalid Parameters'});
@@ -23,7 +24,9 @@ router.post('/sites', function(req, res) {
 });
 
 router.get('/sites', function(req, res) {
-  
+  var sites = Site.find({userId: req.userId});
+  console.log(sites);
+  res.json({ sites });
 });
 
 

@@ -30793,6 +30793,7 @@ var style = {
 
 var logout = function logout() {
   localStorage.removeItem('jwtToken');
+  localStorage.removeItem('userId');
   window.location.reload();
 };
 
@@ -34991,10 +34992,16 @@ var TrackerIndex = function (_React$Component) {
   function TrackerIndex(props) {
     _classCallCheck(this, TrackerIndex);
 
-    return _possibleConstructorReturn(this, (TrackerIndex.__proto__ || Object.getPrototypeOf(TrackerIndex)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (TrackerIndex.__proto__ || Object.getPrototypeOf(TrackerIndex)).call(this, props));
+
+    _this.state = {};
+    return _this;
   }
 
   _createClass(TrackerIndex, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {}
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -42925,6 +42932,13 @@ var Auth = function (_Component) {
           _this2.setState({ message: '' });
           _this2.props.history.push("/");
         });
+      }
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (localStorage.getItem("jwtToken") !== null) {
+        this.props.history.push('/');
       }
     }
   }, {

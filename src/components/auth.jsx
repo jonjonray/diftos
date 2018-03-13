@@ -56,6 +56,12 @@ class Auth extends Component {
   }
 
 
+  componentWillMount(){
+    if (localStorage.getItem("jwtToken") !== null) {
+      this.props.history.push('/');
+    }
+  }
+
   render() {
     const { username, password, message } = this.state;
     return (
