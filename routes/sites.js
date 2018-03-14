@@ -13,7 +13,7 @@ router.post('/new', function(req, res) {
       url: req.body.url,
       userId: req.body.userId
     });
-    
+
     newSite.save(function(err) {
       if (err) {
         return res.json({success: false, msg: 'Invalid Parameters'});
