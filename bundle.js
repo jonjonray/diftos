@@ -34978,6 +34978,10 @@ var _trackerForm = __webpack_require__(267);
 
 var _trackerForm2 = _interopRequireDefault(_trackerForm);
 
+var _axios = __webpack_require__(327);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -34994,13 +34998,19 @@ var TrackerIndex = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (TrackerIndex.__proto__ || Object.getPrototypeOf(TrackerIndex)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      sites: []
+    };
     return _this;
   }
 
   _createClass(TrackerIndex, [{
     key: "componentWillMount",
-    value: function componentWillMount() {}
+    value: function componentWillMount() {
+      // axios.get(`/sites?userId=${localStorage.getItem("userId")}`)
+      //       .then(console.log)
+      //       .catch(console.log);
+    }
   }, {
     key: "render",
     value: function render() {
@@ -37132,6 +37142,10 @@ var _TextField = __webpack_require__(268);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
+var _axios = __webpack_require__(327);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37160,10 +37174,37 @@ var TrackerForm = function (_React$Component) {
   function TrackerForm(props) {
     _classCallCheck(this, TrackerForm);
 
-    return _possibleConstructorReturn(this, (TrackerForm.__proto__ || Object.getPrototypeOf(TrackerForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (TrackerForm.__proto__ || Object.getPrototypeOf(TrackerForm)).call(this, props));
+
+    _this.state = {
+      title: "",
+      url: ""
+    };
+
+    _this.onChange = _this.onChange.bind(_this);
+    _this.onSubmit = _this.onSubmit.bind(_this);
+    return _this;
   }
 
   _createClass(TrackerForm, [{
+    key: 'onChange',
+    value: function onChange(e, name) {
+      var state = this.state;
+      state[e.target.name] = e.target.value;
+      this.setState(state);
+    }
+  }, {
+    key: 'onSubmit',
+    value: function onSubmit(e) {
+      e.preventDefault();
+      var _state = this.state,
+          title = _state.title,
+          url = _state.url;
+
+      var userId = localStorage.getItem('userId');
+      _axios2.default.post('/sites/new', { title: title, url: url, userId: userId });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -37172,11 +37213,19 @@ var TrackerForm = function (_React$Component) {
           className: 'trackerform' },
         _react2.default.createElement(_TextField2.default, { style: { margin: "20px" },
           hintText: 'React.js',
-          floatingLabelText: 'Name' }),
+          floatingLabelText: 'Title',
+          value: this.state.title,
+          onChange: this.onChange,
+          name: 'title'
+        }),
         _react2.default.createElement(_TextField2.default, { style: inputStyles,
           hintText: 'discuss.reactjs.org/tos',
-          floatingLabelText: 'URL' }),
-        _react2.default.createElement(_FlatButton2.default, { label: 'Submit' })
+          floatingLabelText: 'URL',
+          value: this.state.url,
+          onChange: this.onChange,
+          name: 'url' }),
+        _react2.default.createElement(_FlatButton2.default, { label: 'Submit',
+          onClick: this.onSubmit })
       );
     }
   }]);

@@ -11,7 +11,7 @@ const styles = {
 class NavBar extends React.Component {
   constructor(props){
     super(props);
-    this.state = {menuDisplay: false};
+    this.state = { menuDisplay: false };
     this.toggleMenu = this.toggleMenu.bind(this);
   }
 
@@ -33,7 +33,7 @@ class NavBar extends React.Component {
         <AppBar
           title="Dif ToS"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonClick={this.toggleMenu}
+          onLeftIconButtonClick={ this.toggleMenu }
           style={styles}
           />
         <DropDown />
@@ -45,7 +45,7 @@ class NavBar extends React.Component {
         <AppBar
           title="Dif ToS"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonClick={this.toggleMenu}
+          onLeftIconButtonClick={ this.toggleMenu }
           style={styles}
         />
       );
