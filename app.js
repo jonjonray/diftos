@@ -10,6 +10,8 @@ var index = require('./routes/index');
 var mongoose = require('mongoose');
 var auth = require('./routes/auth');
 var sites = require('./routes/sites');
+// var scraper = require('./util/scraper');
+
 
 mongoose.connect('mongodb://localhost/test');
 
@@ -28,6 +30,31 @@ app.use(express.static(path.join(__dirname)));
 app.use('/users', auth);
 app.use('/api/auth', auth);
 app.use('/sites', sites);
+
+const rp = require('request-promise');
+const cheerio = require('cheerio');
+
+
+const options = {
+  uri: `https://www.stormboard.com/users/tos`,
+  transform: function (body) {
+    return cheerio.load(body);
+  }
+};
+
+
+
+const scraper = function (){
+  rp(options)
+  .then(($) => {
+    console.log($('*').html());
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
+scraper();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
