@@ -25,8 +25,7 @@ class TrackerIndex extends React.Component {
           this.state.sites.map((site, idx) => {
             return (
               <TrackerIndexItem
-                      title={site.title}
-                      url={site.url}
+                      site={site}
                       key={idx} />
                   );
           })

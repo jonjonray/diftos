@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import axios from 'axios';
 
 const styles = {
   margin: "5px"
@@ -12,11 +13,16 @@ class TrackerIndexItem extends React.Component {
     super(props);
 
     this.state = {
-      title: props.title,
-      url: props.url
+      title: props.site.title,
+      url: props.site.url,
+      id: props.site._id
     };
   }
 
+  onEdit(e){
+    e.preventDefault();
+
+  }
 
   render() {
     return (

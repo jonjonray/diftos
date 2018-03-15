@@ -30,8 +30,36 @@ router.get('/', function(req, res) {
 
 });
 
+router.delete('/', function(req, res) {
+  Site.remove({_id: req.query.id }, function (err, site) {
+    if (err) {
+      res.json({success: false, msg: "Deletion Failed"});
+    } else {
+      res.json({success: true, msg: "Deletion Successful"});
+    }
+  });
+});
+
+
 router.patch('/', function(req, res) {
-  
+  Site.findOneAndUpdate({_id: req.query.id},
+                        {$set:{title: req.query.title, url: req.query.url}},
+                        {new: true},
+                        function(err, doc){
+                          if (err) {
+                            res.json({
+                              success: false,
+                              msg: "Update Failed",
+                              site: doc
+                            });
+                          } else {
+                            res.json({
+                              success: true,
+                              msg: "Update Successful",
+                              site: doc
+                            });
+                          }
+                      });
 });
 
 

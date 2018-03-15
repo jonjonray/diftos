@@ -4669,8 +4669,7 @@ var TrackerIndex = function (_React$Component) {
         null,
         this.state.sites.map(function (site, idx) {
           return _react2.default.createElement(_trackerIndexItem2.default, {
-            title: site.title,
-            url: site.url,
+            site: site,
             key: idx });
         }),
         _react2.default.createElement(_trackerForm2.default, null)
@@ -25378,6 +25377,10 @@ var _FlatButton = __webpack_require__(71);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
+var _axios = __webpack_require__(73);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25399,13 +25402,19 @@ var TrackerIndexItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (TrackerIndexItem.__proto__ || Object.getPrototypeOf(TrackerIndexItem)).call(this, props));
 
     _this.state = {
-      title: props.title,
-      url: props.url
+      title: props.site.title,
+      url: props.site.url,
+      id: props.site._id
     };
     return _this;
   }
 
   _createClass(TrackerIndexItem, [{
+    key: 'onEdit',
+    value: function onEdit(e) {
+      e.preventDefault();
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
