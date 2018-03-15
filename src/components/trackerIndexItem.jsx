@@ -7,17 +7,32 @@ const styles = {
 };
 
 
-const TrackerIndexItem = ({ title, url}) => (
-  <Card style={styles}>
-    <CardHeader
-      title="title"
-      subtitle="url"
-    />
-    <CardActions>
-      <FlatButton label="Edit" />
-      <FlatButton label="Delete" />
-    </CardActions>
-  </Card>
-);
+class TrackerIndexItem extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      title: props.title,
+      url: props.url
+    };
+  }
+
+
+  render() {
+    return (
+      <Card style={styles}>
+        <CardHeader
+          title={this.state.title}
+          subtitle={this.state.url}
+          />
+        <CardActions>
+          <FlatButton label="Edit" />
+          <FlatButton label="Delete" />
+        </CardActions>
+      </Card>
+    );
+  }
+}
+
 
 export default TrackerIndexItem;

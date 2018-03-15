@@ -11,8 +11,8 @@ class TrackerIndex extends React.Component {
     };
   }
 
-  componentWillMount(){
-    axios.get(`/sites/all`, { params: { userId: localStorage.getItem("userId")} })
+  componentDidMount(){
+    axios.get(`/sites/`, { params: { userId: localStorage.getItem("userId")} })
           .then((res) => {
             this.setState({sites: res.data.sites });
           });

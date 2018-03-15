@@ -4653,11 +4653,11 @@ var TrackerIndex = function (_React$Component) {
   }
 
   _createClass(TrackerIndex, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
-      _axios2.default.get("/sites/all", { params: { userId: localStorage.getItem("userId") } }).then(function (res) {
+      _axios2.default.get("/sites/", { params: { userId: localStorage.getItem("userId") } }).then(function (res) {
         _this2.setState({ sites: res.data.sites });
       });
     }
@@ -25366,6 +25366,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -25378,28 +25380,53 @@ var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var styles = {
   margin: "5px"
 };
 
-var TrackerIndexItem = function TrackerIndexItem(_ref) {
-  var title = _ref.title,
-      url = _ref.url;
-  return _react2.default.createElement(
-    _Card.Card,
-    { style: styles },
-    _react2.default.createElement(_Card.CardHeader, {
-      title: 'title',
-      subtitle: 'url'
-    }),
-    _react2.default.createElement(
-      _Card.CardActions,
-      null,
-      _react2.default.createElement(_FlatButton2.default, { label: 'Edit' }),
-      _react2.default.createElement(_FlatButton2.default, { label: 'Delete' })
-    )
-  );
-};
+var TrackerIndexItem = function (_React$Component) {
+  _inherits(TrackerIndexItem, _React$Component);
+
+  function TrackerIndexItem(props) {
+    _classCallCheck(this, TrackerIndexItem);
+
+    var _this = _possibleConstructorReturn(this, (TrackerIndexItem.__proto__ || Object.getPrototypeOf(TrackerIndexItem)).call(this, props));
+
+    _this.state = {
+      title: props.title,
+      url: props.url
+    };
+    return _this;
+  }
+
+  _createClass(TrackerIndexItem, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _Card.Card,
+        { style: styles },
+        _react2.default.createElement(_Card.CardHeader, {
+          title: this.state.title,
+          subtitle: this.state.url
+        }),
+        _react2.default.createElement(
+          _Card.CardActions,
+          null,
+          _react2.default.createElement(_FlatButton2.default, { label: 'Edit' }),
+          _react2.default.createElement(_FlatButton2.default, { label: 'Delete' })
+        )
+      );
+    }
+  }]);
+
+  return TrackerIndexItem;
+}(_react2.default.Component);
 
 exports.default = TrackerIndexItem;
 

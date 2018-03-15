@@ -23,13 +23,16 @@ router.post('/new', function(req, res) {
   }
 });
 
-router.get('/all', function(req, res) {
+router.get('/', function(req, res) {
   Site.find({userId: req.query.userId}, function (err, sites) {
     res.json({ sites });
   });
 
 });
 
+router.patch('/', function(req, res) {
+  
+});
 
 
 module.exports = router;
