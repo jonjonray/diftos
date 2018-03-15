@@ -7,11 +7,11 @@ const styles = {
 };
 
 
-const TrackerIndexItem = () => (
+const TrackerIndexItem = ({ title, url}) => (
   <Card style={styles}>
     <CardHeader
-      title="Test ToS"
-      subtitle="fake.com/termsofservice"
+      title="title"
+      subtitle="url"
     />
     <CardActions>
       <FlatButton label="Edit" />

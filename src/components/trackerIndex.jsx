@@ -12,16 +12,25 @@ class TrackerIndex extends React.Component {
   }
 
   componentWillMount(){
-    // axios.get(`/sites?userId=${localStorage.getItem("userId")}`)
-    //       .then(console.log)
-    //       .catch(console.log);
+    axios.get(`/sites/all`, { params: { userId: localStorage.getItem("userId")} })
+          .then((res) => {
+            this.setState({sites: res.data.sites });
+          });
+
   }
   render(){
     return (
       <div>
-        <TrackerIndexItem />
-        <TrackerIndexItem />
-        <TrackerIndexItem />
+        {
+          this.state.sites.map((site, idx) => {
+            return (
+              <TrackerIndexItem
+                      title={site.title}
+                      url={site.url}
+                      key={idx} />
+                  );
+          })
+        }
         <TrackerForm />
       </div>
     );

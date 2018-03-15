@@ -24,8 +24,10 @@ router.post('/new', function(req, res) {
 });
 
 router.get('/all', function(req, res) {
-  var sites = Site.find({userId: req.userId});
-  res.json({ sites });
+  Site.find({userId: req.query.userId}, function (err, sites) {
+    res.json({ sites });
+  });
+
 });
 
 
