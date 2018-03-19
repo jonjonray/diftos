@@ -15,9 +15,9 @@ const options = (uri) => {
 
 
 
-const scraper = async () {
-
-  rp(options)
+const scraper = async (uri) => {
+  let setup = await options(uri)
+  rp(setup)
   .then(($) => {
     console.log($('*').html());
   })
@@ -25,3 +25,5 @@ const scraper = async () {
     console.log(err);
   });
 }
+
+module.exports = scraper
