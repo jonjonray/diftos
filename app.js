@@ -35,24 +35,26 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 
 
-const options = {
+const options = () => {
+  return {
   uri: `https://www.stormboard.com/users/tos`,
   transform: function (body) {
     return cheerio.load(body);
-  }
+    }
+  };
 };
 
 
 
-const scraper = function (){
-  rp(options)
+function scraper(){
+  rp(options())
   .then(($) => {
     console.log($('*').html());
   })
   .catch((err) => {
     console.log(err);
   });
-};
+}
 
 scraper();
 

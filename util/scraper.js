@@ -2,26 +2,26 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 
 
-const options = function (uri) {
+
+
+const options = (uri) => {
   return {
-          uri,
-          transform: function (body) {
-            return cheerio.load(body);
-            }
-          };
+  uri,
+  transform: function (body) {
+    return cheerio.load(body);
+    }
+  };
 };
 
 
-const scraper = function (uri){
-  rp(options(uri))
+
+const scraper = async () {
+
+  rp(options)
   .then(($) => {
-    return $;
+    console.log($('*').html());
   })
   .catch((err) => {
-    return err;
+    console.log(err);
   });
-};
-
-
-
-  module.exports = scraper;
+}
