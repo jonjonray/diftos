@@ -10,7 +10,8 @@ var index = require('./routes/index');
 var mongoose = require('mongoose');
 var auth = require('./routes/auth');
 var sites = require('./routes/sites');
-
+var htmlDiff = require('./util/comparison')
+var scraper = require('./util/scraper')
 
 mongoose.connect('mongodb://localhost/test');
 
@@ -29,6 +30,8 @@ app.use(express.static(path.join(__dirname)));
 app.use('/users', auth);
 app.use('/api/auth', auth);
 app.use('/sites', sites);
+
+
 
 
 

@@ -14,14 +14,18 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: [/\.jsx?$/, /\.js?$/],
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
-        }
+
+        use: [{
+          loader: 'babel-loader',
+
+          options: {
+            presets: ['es2015', 'react'],
+          }
+        }]
       }
     ]
   },
