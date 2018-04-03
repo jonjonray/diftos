@@ -17,9 +17,10 @@ const options = (uri) => {
 
 const scraper = async (uri) => {
   let setup = await options(uri)
+
   rp(setup)
   .then(($) => {
-    return $('*').html();
+
   })
   .catch((err) => {
     return err;

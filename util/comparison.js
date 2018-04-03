@@ -1,5 +1,4 @@
-// tree comparison
-// source
+
 
 
 
@@ -168,7 +167,13 @@ var htmlDiff = function(before, after) {
 // return value from htmlDiff
 // if element not present wrap in <in> and <del> tags
 var domTraversalDiff = function (before, after){
+  // if (before === undefined && after !== undefined) {
+  //
+  // } else if (before !== undefined && after === undefined){
+  //
+  // }
 
+  
 }
 
-module.exports = htmlDiff
+module.exports = domTraversalDiff
